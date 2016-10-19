@@ -42,7 +42,10 @@ class ListMovie : AppCompatActivity() {
 
         bFetch.setOnClickListener {
             val service = ServiceFactory.createRetrofitService<MovieService>(MovieService::class.java, MovieService.SERVICE_ENDPOINT)
-            service.getMoviesPopular(BuildConfig.POPULAR_MOVIES_API_KEY).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread()).subscribe(object : Subscriber<Movie>() {
+            service.getMoviesPopular(BuildConfig.POPULAR_MOVIES_API_KEY)
+                    .subscribeOn(Schedulers.newThread())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(object : Subscriber<Movie>() {
                 override fun onCompleted() {
                     // do nothing
                 }
